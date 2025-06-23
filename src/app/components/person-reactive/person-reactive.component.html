@@ -1,0 +1,42 @@
+<div class="form-container">
+  <h2>Create Person</h2>
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        id="firstName"
+        formControlName="firstName"
+      >
+      <div *ngIf="personForm.get('firstName')?.invalid && (personForm.get('firstName')?.dirty || personForm.get('firstName')?.touched)" class="error">
+        <div *ngIf="personForm.get('firstName')?.errors?.['required']">First Name is required.</div>
+        <div *ngIf="personForm.get('firstName')?.errors?.['minlength']">First Name must be at least 3 characters.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        formControlName="lastName"
+      >
+      <div *ngIf="personForm.get('lastName')?.invalid && (personForm.get('lastName')?.dirty || personForm.get('lastName')?.touched)" class="error">
+        <div *ngIf="personForm.get('lastName')?.errors?.['required']">Last Name is required.</div>
+        <div *ngIf="personForm.get('lastName')?.errors?.['minlength']">Last Name must be at least 3 characters.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+      >
+      <div *ngIf="personForm.get('email')?.invalid && (personForm.get('email')?.dirty || personForm.get('email')?.touched)" class="error">
+        <div *ngIf="personForm.get('email')?.errors?.['required']">Email is required.</div>
+        <div *ngIf="personForm.get('email')?.errors?.['email']">Invalid email format.</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="personForm.invalid">Submit</button>
+  </form>
+</div>
